@@ -1,20 +1,54 @@
 import { NavLink } from "react-router";
 
-import "../styles/Header.css";
+const navBase = "text-white font-normal hover:text-blue-900 transition-colors";
+const navActive = "text-blue-900";
 
 const Header = () => {
   return (
-    <div className="header">
+    <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4">
       <nav>
-        <ul>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/projects">Projects</NavLink>
-          <NavLink to="/resume">Resume</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
+        <ul className="flex items-center gap-6">
+          {[
+            { to: "/", label: "KEVIN NGUYEN", extraClass: "sgeo" },
+            { to: "/about", label: "About" },
+            { to: "/projects", label: "Projects" },
+            { to: "/experience", label: "Experience" },
+            { to: "/resume", label: "Resume" },
+            { to: "/contact", label: "Contact" },
+          ].map(({ to, label, extraClass }) => (
+            <li key={to}>
+              <NavLink
+                to={to}
+                className={({ isActive }) =>
+                  `${navBase} ${extraClass ?? ""} ${isActive ? navActive : ""}`
+                }
+              >
+                {label}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
-    </div>
+
+      <div className="flex items-center gap-4">
+        <a
+          href="https://github.com/keviniannn"
+          target="_blank"
+          rel="noreferrer"
+          className={navBase}
+        >
+          GitHub
+        </a>
+        <a
+          href="https://www.linkedin.com/in/keviniann/"
+          target="_blank"
+          rel="noreferrer"
+          className={navBase}
+        >
+          LinkedIn
+        </a>
+      </div>
+    </header>
   );
 };
 
