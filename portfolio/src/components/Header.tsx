@@ -1,7 +1,6 @@
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 
-const navBase = "text-white font-normal hover:text-blue-900 transition-colors";
-const navActive = "text-blue-900";
+const navBase = "font-normal transition-colors hover:text-blue-900";
 
 const Header = () => {
   return (
@@ -9,7 +8,11 @@ const Header = () => {
       <nav>
         <ul className="flex items-center gap-6">
           {[
-            { to: "/", label: "KEVIN NGUYEN", extraClass: "sgeo" },
+            {
+              to: "/",
+              label: "KEVIN NGUYEN",
+              extraClass: "sgeo tracking-wide",
+            },
             { to: "/about", label: "About" },
             { to: "/projects", label: "Projects" },
             { to: "/experience", label: "Experience" },
@@ -20,7 +23,9 @@ const Header = () => {
               <NavLink
                 to={to}
                 className={({ isActive }) =>
-                  `${navBase} ${extraClass ?? ""} ${isActive ? navActive : ""}`
+                  `${navBase} ${extraClass ?? ""} ${
+                    isActive ? "text-blue-900" : "text-stone-200"
+                  }`
                 }
               >
                 {label}
